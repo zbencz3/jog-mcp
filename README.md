@@ -6,6 +6,8 @@ registration regulation, the new urbanism code, the land-fund law, ANCPI fees
 and the relevant books of the Civil and Fiscal codes. It has 18 acts and about
 2,400 articles, taken verbatim from [legislatie.just.ro](https://legislatie.just.ro).
 
+Python 3.10+, read-only, no API key needed. **124 tests, pytest**, all passing.
+
 *Jog* is Hungarian for "law". The server is built for people who ask questions
 in Hungarian or Romanian and must quote Romanian law at a land-registry
 counter, so its rules are strict:
@@ -173,7 +175,7 @@ uv pip install -e '.[dev]'
 .venv/bin/pytest
 ```
 
-The tests cover the parser against real portal markup, exact citation,
+The 124 tests cover the parser against real portal markup, exact citation,
 act-reference resolution, every repeal case (whole act, partial, agreement
 with the portal's own "Abrogat." stamps) and the security properties. They
 also run a question benchmark against the real corpus that checks each
