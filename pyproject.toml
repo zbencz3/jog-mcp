@@ -1,0 +1,34 @@
+[project]
+name = "jog-mcp"
+version = "0.1.0"
+description = "MCP server over the full text of Romanian surveying and cadastre law, with exact article citation"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Zsolt Bencze" }]
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=2.0",
+    "PyYAML>=6.0",
+]
+keywords = ["mcp", "model-context-protocol", "romania", "cadastre", "law", "claude"]
+
+[project.optional-dependencies]
+# Only needed to rebuild the corpus from legislatie.just.ro; serving it is
+# stdlib + the MCP SDK.
+fetch = ["requests>=2.31"]
+dev = ["pytest>=8.0", "requests>=2.31"]
+
+[project.scripts]
+jog-mcp = "jog_mcp.server:main"
+jog-mcp-fetch = "jog_mcp.fetch:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["jog_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

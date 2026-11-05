@@ -1,0 +1,155 @@
+# The acts jog-mcp keeps the full text of, and what is known about each.
+#
+# Read by both halves of the project:
+#   * jog-mcp-fetch   downloads each `doc_id` from legislatie.just.ro into acts/
+#   * jog-mcp         serves acts/; `title` is a friendly (Hungarian) name that
+#                     search also matches, and the repeal fields put a warning
+#                     on every result from a repealed act or article.
+#
+# Fields:
+#   id                 file name in acts/ (without .md)
+#   doc_id             the Portal Legislativ document to fetch; each new
+#                      consolidation gets a NEW id, see `alt_ids`
+#   alt_ids            other ids of the same act; `jog-mcp-fetch --check --deep`
+#                      compares them so a newer consolidation shows up
+#   title              friendly name, searched alongside the official title
+#   articles           keep only this article range (e.g. a part of a code)
+#   repealed_on / repealed_by / superseded_by
+#                      the act is no longer in force; kept for files opened
+#                      before the repeal, flagged on every result
+#   repealed_articles  a PARTIAL repeal: only these article ranges fell
+#   min_articles       below this, `--check` suspects the wrong document
+#   max_bytes/timeout  the largest documents need more than the defaults
+#   note               a short factual note, shown by list_acts
+root: ''
+track:
+- id: legea-7-1996
+  doc_id: '311746'
+  title: Legea 7/1996 — kataszter és ingatlan-nyilvántartás
+  alt_ids: ['202841', '69491', '7798']
+  note: The base law of cadastre and land registration.
+- id: regulament-700-2014
+  doc_id: '263592'
+  title: Regulament 700/2014 — avizare, recepție (HATÁLYON KÍVÜL)
+  repealed_on: '2023-02-15'
+  repealed_by: Ordinul ANCPI 600/2023
+  superseded_by: regulament-600-2023
+  note: The text of the regulation approved by Ordin 700/2014.
+- id: regulament-600-2023
+  doc_id: '312552'
+  title: Regulament 600/2023 — recepție és înscriere (HATÁLYOS)
+  max_bytes: 30000000
+  timeout: 600
+  alt_ids: ['268229', '303271', '307663', '265122']
+  note: In force since 2023-02-15, replacing Regulament 700/2014. Court ruling
+    178/2024 annulled art. 98 alin. (2).
+  min_articles: 100
+- id: ordin-700-2014
+  doc_id: '205646'
+  title: Ordinul ANCPI 700/2014 — jóváhagyó (HATÁLYON KÍVÜL)
+  repealed_on: '2023-02-15'
+  repealed_by: Ordinul ANCPI 600/2023
+  superseded_by: regulament-600-2023
+  note: Only the approving order; the content is under regulament-700-2014.
+  min_articles: 1
+- id: codul-urbanism-169-2026
+  doc_id: '313329'
+  title: Codul urbanismului (Legea 169/2026) — ÚJ, hatályos 2026.08.25
+  max_bytes: 40000000
+  timeout: 600
+  alt_ids: []
+  note: In force from 2026-08-25, replacing Legea 50/1991 and Legea 350/2001.
+    Book I (art. 1-365) planning, urbanism, permits; Book II (art. 366-584)
+    construction, quality, liability. Art. 576 holds the transitional rules.
+  min_articles: 100
+- id: legea-50-1991
+  doc_id: '311797'
+  title: Legea 50/1991 — építkezési engedély (HATÁLYON KÍVÜL)
+  repealed_on: '2026-08-25'
+  repealed_by: Legea 169/2026 (Codul urbanismului), art. 576 alin. (3)
+  superseded_by: codul-urbanism-169-2026
+  alt_ids: ['186631', '222204', '307791', '184771', '55794']
+  note: Building permits, certificat de urbanism.
+- id: legea-350-2001
+  doc_id: '307036'
+  title: Legea 350/2001 — területrendezés (HATÁLYON KÍVÜL)
+  repealed_on: '2026-08-25'
+  repealed_by: Legea 169/2026 (Codul urbanismului), art. 576 alin. (3)
+  superseded_by: codul-urbanism-169-2026
+  alt_ids: ['184772', '73653', '29453']
+  note: Spatial planning, PUZ / PUD.
+- id: legea-10-1995
+  doc_id: '312653'
+  title: Legea 10/1995 — építési minőség (RÉSZBEN hatályon kívül)
+  alt_ids: ['217050', '182108', '5729']
+  repealed_on: '2026-08-25'
+  repealed_by: Legea 169/2026 (Codul urbanismului), art. 576 alin. (3) lit. c)
+  superseded_by: codul-urbanism-169-2026
+  repealed_articles: 1-9,11-40,42-44
+  note: Construction quality. Art. 10, 41 and 45 onward remain in force.
+  min_articles: 10
+- id: legea-255-2010
+  doc_id: '309349'
+  title: Legea 255/2010 — kisajátítás közérdekből
+  alt_ids: ['182136', '124540']
+  note: Expropriation for public utility.
+- id: regulament-890-2005
+  doc_id: '155833'
+  title: Regulament 890/2005 — földalap-bizottságok, birtoklevél, birtokba helyezés
+  max_bytes: 30000000
+  timeout: 400
+  alt_ids: ['64115']
+  note: Implementing rules of Legea 18/1991 (land commissions, titlu de
+    proprietate, punere în posesie) and 59 annexed forms.
+  min_articles: 20
+- id: decret-lege-42-1990
+  doc_id: '823'
+  title: DL 42/1990 — a parasztság ösztönzése (épületek, háztáji)
+  alt_ids: []
+  note: Art. 8 is the basis of ownership of buildings on household plots.
+  min_articles: 3
+- id: legea-18-1991
+  doc_id: '307902'
+  title: Legea 18/1991 — földalap-törvény
+  alt_ids: ['175507', '1461', '1459']
+  note: Land fund law; property titles and restitution.
+- id: ordin-16-2019
+  doc_id: '307651'
+  title: Ordinul ANCPI 16/2019 — a hivatali illetékek (tarife)
+  alt_ids: ['221460', '209916']
+  note: ANCPI fees. The tariff table is in the annex.
+  min_articles: 5
+- id: legea-17-2014
+  doc_id: '282101'
+  title: Legea 17/2014 — külterületi mezőgazdasági föld adásvétele
+  alt_ids: ['228844', '156290']
+  note: Sale of agricultural land outside built-up areas; pre-emption right.
+- id: norme-17-2014
+  doc_id: '260147'
+  title: Norme 17/2014 — az elővásárlási eljárás és űrlapjai
+  alt_ids: ['158621']
+  note: The pre-emption procedure, deadlines and its 13 annexed forms.
+  min_articles: 5
+- id: regulament-urbanism-525-1996
+  doc_id: '269332'
+  title: Általános Urbanisztikai Szabályzat (HG 525/1996)
+  alt_ids: ['129030', '40207']
+  note: General urbanism rules (buildability, plot size, setbacks, parking).
+- id: codul-fiscal-imobile
+  doc_id: '312601'
+  title: Codul fiscal — épület- és telekadó (art. 453-495)
+  articles: 453-495
+  max_bytes: 40000000
+  timeout: 600
+  alt_ids: ['257144', '171282']
+  note: Building and land tax, art. 453-495 only.
+  min_articles: 20
+- id: codul-civil-bunuri
+  doc_id: '309285'
+  title: Codul civil — Cartea III (Despre bunuri), 535-952
+  articles: 535-952
+  max_bytes: 20000000
+  timeout: 180
+  alt_ids: ['130143']
+  note: Book III only (property, servitudes, usufruct, superficie, land book).
+  min_articles: 100
