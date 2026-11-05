@@ -65,7 +65,7 @@ Articolul 7 — LEGE nr. 50 din 29 iulie 1991 (**republicată**)
 !! ⚠️ HATÁLYON KÍVÜL 2026-08-25 óta — Legea 169/2026 (Codul urbanismului), art. 576 alin. (3); helyette: codul-urbanism-169-2026
 ```
 
-The answer the model is instructed to give: *"A certificate of urbanism is
+An answer that follows the server's citation rules reads like this (written by hand from the excerpt above, not model output): *"A certificate of urbanism is
 valid for 12 to 36 months from issue, as set by the issuer (Codul
 urbanismului, Legea 169/2026, art. 257 alin. (15))."* Legea 50/1991, which
 used to govern this, has been repealed since 2026-08-25.
